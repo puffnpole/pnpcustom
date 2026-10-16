@@ -436,7 +436,7 @@ function charmEl(c){
 $("brand").textContent=BRAND;$("tagline").textContent=TAGLINE;document.title=BRAND+" · Personaliza tu pulsera";
 $("copyright").textContent="© "+BRAND+" "+new Date().getFullYear();
 
-/* CONSTRUCCIÓN DE CHARMS CON BASES LISAS PLATEADA, DORADA Y CATÁLOGO EN LOS ARCOS */
+/* CONSTRUCCIÓN DE CHARMS ALINEADOS EXACTAMENTE A LA MITAD DE LA LÍNEA PUNTEADA */
 function buildHeroOrbit(){
   const left=$("orbitLeft"), right=$("orbitRight");
   left.innerHTML=""; right.innerHTML="";
@@ -448,7 +448,7 @@ function buildHeroOrbit(){
   const list = defaultLisos.concat(CHARMS);
 
   const count = 5;
-  const radius = 280;
+  const radius = 280; // Coincide exactamente con el radio de .arc-orbit (560px de ancho/alto / 2)
   const charmWidth = 54;
   const charmHeight = 50;
 
@@ -457,10 +457,11 @@ function buildHeroOrbit(){
     itemLeft.className = "orbit-item";
     const angleLeft = (i * (360 / count)) * (Math.PI / 180);
     
-    const xL = radius + radius * Math.cos(angleLeft) - (charmWidth / 2);
-    const yL = radius + radius * Math.sin(angleLeft) - (charmHeight / 2);
-    itemLeft.style.left = xL + "px";
-    itemLeft.style.top = yL + "px";
+    // Alineación centrada geométrica exacta sobre la línea del radio
+    const xL = radius * Math.cos(angleLeft);
+    const yL = radius * Math.sin(angleLeft);
+    itemLeft.style.left = (radius + xL) + "px";
+    itemLeft.style.top = (radius + yL) + "px";
     itemLeft.appendChild(charmEl(list[i % list.length]));
     left.appendChild(itemLeft);
 
@@ -468,10 +469,10 @@ function buildHeroOrbit(){
     itemRight.className = "orbit-item";
     const angleRight = (i * (360 / count) + 36) * (Math.PI / 180);
     
-    const xR = radius + radius * Math.cos(angleRight) - (charmWidth / 2); 
-    const yR = radius + radius * Math.sin(angleRight) - (charmHeight / 2);
-    itemRight.style.left = xR + "px";
-    itemRight.style.top = yR + "px";
+    const xR = radius * Math.cos(angleRight);
+    const yR = radius * Math.sin(angleRight);
+    itemRight.style.left = (radius + xR) + "px";
+    itemRight.style.top = (radius + yR) + "px";
     itemRight.appendChild(charmEl(list[(i + 2) % list.length]));
     right.appendChild(itemRight);
   }
