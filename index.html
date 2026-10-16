@@ -30,7 +30,7 @@ h2{font:italic 800 30px "Playfair Display",Georgia,serif;text-align:center;margi
 .sub{text-align:center;color:var(--mut);font-size:14px;margin:0 0 16px}
 .panel{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(27,10,20,.92);backdrop-filter:blur(8px);border:2px solid var(--pink);border-radius:22px;padding:16px;box-shadow:0 0 28px rgba(255,45,149,.45)}
 .well{display:flex;flex-wrap:wrap;gap:2px;align-content:flex-start;padding:10px;background:linear-gradient(#ffe0ef,#fff8fc);border:1px solid var(--pink2);border-radius:12px}
-#bracelet{min-height:104px}
+#bracelet{min-height:104px;flex-wrap:nowrap;overflow-x:auto;scrollbar-color:#ff2d95 #ffe0ef}
 .empty{margin:auto;color:#b04a85;font-size:14px;text-align:center}
 .tools{display:none;gap:6px;justify-content:center;margin-top:8px}.tools button{padding:7px 13px}
 .pf{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:8px;flex-wrap:wrap}
@@ -56,6 +56,8 @@ select,#search,#code{font:14px Poppins,Helvetica,Arial,sans-serif;color:var(--in
 .cara b{font:800 .9em/1 Poppins,Arial,sans-serif;color:#111;text-align:center}
 #bracelet .charm.sel{outline:3px solid var(--pink);outline-offset:1px;border-radius:4px}
 dialog{max-width:560px;width:calc(100% - 28px);background:var(--card);color:var(--ink);border:2px solid var(--pink);border-radius:18px;padding:16px;box-shadow:0 0 30px rgba(255,45,149,.5)}
+#dFull{max-width:min(1100px,96vw);width:96vw}
+#fullB{flex-wrap:nowrap;overflow-x:auto;gap:0;justify-content:safe center}
 dialog::backdrop{background:rgba(0,0,0,.7)}
 table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}th,td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
 .small{color:var(--mut);font-size:13px}
@@ -147,16 +149,17 @@ function buildCatalog(){
       const p=document.createElement("small");p.textContent=fmt(unit(c));t.appendChild(p);t.onclick=fn;g.appendChild(t)};
     if(cat=="Tu imagen"){const c={name:"Tu imagen",price:PRECIO_IMAGEN_PROPIA};tile(c,()=>$("file").click());
       const f=g.querySelector(".cara");f.style.background="#fff";f.innerHTML="<b>TU<br>FOTO</b>"}
-    else CHARMS.filter(c=>c.cat==cat).forEach(c=>tile(c,()=>{sel.push({...c,m:metal});cur=-1;render()}));
+    else CHARMS.filter(c=>c.cat==cat).forEach(c=>tile(c,()=>{sel.push({...c,m:metal});cur=-1;render();$("bracelet").scrollLeft=1e6}));
     box.appendChild(s);
   });filtrar();
 }
 document.querySelectorAll(".pill").forEach(b=>b.onclick=()=>{metal=b.dataset.m;document.querySelectorAll(".pill").forEach(x=>x.classList.toggle("on",x==b));buildCatalog();render()});
 
 function render(){
-  const br=$("bracelet");br.innerHTML="";
+  const br=$("bracelet"),sx=br.scrollLeft;br.innerHTML="";
   if(!sel.length)br.innerHTML='<span class="empty">Tu pulsera está vacía. ¡Añade charms!</span>';
   sel.forEach((c,i)=>{const b=charmEl(c);if(i==cur)b.classList.add("sel");b.onclick=()=>{cur=cur==i?-1:i;render()};br.appendChild(b)});
+  br.scrollLeft=sx;
   $("tools").style.display=cur>=0?"flex":"none";
   const total=sel.reduce((a,c)=>a+unit(c),0);
   $("total").textContent="Total: "+fmt(total);$("count").textContent="Charms: "+sel.length;
@@ -172,13 +175,15 @@ $("load").onclick=()=>{
   sel=$("code").value.trim().split(",").map(p=>{const[id,m]=p.split(":");const c=CHARMS.find(x=>x.id==id);return c&&{...c,m:m=="D"?"dorado":"plateado"}}).filter(Boolean);
   if(!sel.length)toast("Pega aquí un código válido");cur=-1;render()};
 $("file").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
-  r.onload=()=>{sel.push({id:"IMG",custom:true,name:"Tu imagen",cara:r.result,price:PRECIO_IMAGEN_PROPIA,cat:"Imagen propia",m:metal});render();toast("Imagen añadida. Mándala junto con tu pedido.")};r.readAsDataURL(f);e.target.value=""};
+  r.onload=()=>{sel.push({id:"IMG",custom:true,name:"Tu imagen",cara:r.result,price:PRECIO_IMAGEN_PROPIA,cat:"Imagen propia",m:metal});render();$("bracelet").scrollLeft=1e6;toast("Imagen añadida. Mándala junto con tu pedido.")};r.readAsDataURL(f);e.target.value=""};
 $("full").onclick=()=>{
   if(!sel.length)return toast("Tu pulsera está vacía");
   $("fullB").innerHTML="";sel.forEach(c=>{const b=charmEl(c);b.style.fontSize="13px";b.style.cursor="default";$("fullB").appendChild(b)});
   const by={};sel.forEach(c=>{const k=by[c.cat]=by[c.cat]||{n:0,s:0};k.n++;k.s+=unit(c)});
   $("fullT").innerHTML="<table>"+Object.entries(by).map(([k,v])=>`<tr><td>${k}</td><td>×${v.n}</td><td>${fmt(v.s)}</td></tr>`).join("")+`<tr><th>Plateados: ${sel.filter(c=>mt(c)=="plateado").length} · Dorados: ${sel.filter(c=>mt(c)=="dorado").length}</th><th>×${sel.length}</th><th>${fmt(sel.reduce((a,c)=>a+unit(c),0))}</th></tr></table>`;
-  $("dFull").showModal()};
+  $("dFull").showModal();
+    const fs=Math.max(1,Math.min(13,($("fullB").clientWidth-24)/(sel.length*5.4)));
+  $("fullB").querySelectorAll(".charm").forEach(b=>{b.style.width=fs*5.4+"px";b.style.height=fs*4.9+"px"})};
 buildCatalog();render();
 </script>
 </body>
