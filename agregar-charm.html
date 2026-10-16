@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agregar un charm</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0d0409;color:#fff0f7;font-family:Poppins,"Segoe UI",Helvetica,Arial,sans-serif;padding:20px}
+main{max-width:620px;margin:0 auto}
+h1{font:italic 800 32px Georgia,serif;color:#ff9fd0;text-shadow:0 0 14px #ff2d95;margin:0 0 4px}
+.step{background:#1b0a14;border:1px solid #5a1c3f;border-radius:14px;padding:14px;margin:12px 0}
+.step b{color:#ff9fd0}
+label{display:block;font-size:13px;color:#e0a9c6;margin:10px 0 4px}
+input,select,textarea{width:100%;font:15px Poppins,Arial,sans-serif;padding:11px;border-radius:10px;border:1px solid #5a1c3f;background:#0d0409;color:#fff0f7}
+button{font:800 13px Poppins,Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#fff;background:linear-gradient(#ff4fa8,#e0107a);border:1px solid #ff9fd0;border-radius:999px;padding:11px 18px;cursor:pointer;margin:6px 6px 0 0;box-shadow:0 0 12px rgba(255,45,149,.5)}
+.pv{display:grid;place-items:center;background:linear-gradient(#ffe0ef,#fff8fc);border-radius:12px;padding:16px;min-height:140px}
+.charm{position:relative;font-size:22px;width:5.4em;height:4.9em}
+.charm img{width:100%;height:100%;object-fit:contain;display:block}
+.cara{position:absolute;left:3%;top:22%;width:83.5%;height:56%;background:center/cover no-repeat}
+textarea{font:12px monospace;height:90px}
+small{color:#e0a9c6}
+</style>
+</head>
+<body>
+<main>
+<h1>Agregar un charm ✦</h1>
+<small>Esta página es solo para ti (no la ven tus clientas). Ábrela desde la misma carpeta donde está index.html.</small>
+
+<div class="step"><b>Paso 1 · Sube tu foto</b>
+  <label>¿Qué tipo de foto es?</label>
+  <select id="tipo"><option value="cara">Solo el diseño (se pondrá sobre la base de acero)</option><option value="foto">Foto completa del charm (ya incluye el marco)</option></select>
+  <label>Foto</label><input type="file" id="f1" accept="image/*">
+  <div id="w2" style="display:none"><label>Foto en dorado (opcional)</label><input type="file" id="f2" accept="image/*"></div>
+</div>
+
+<div class="step"><b>Paso 2 · Llena los datos</b>
+  <label>Nombre del charm</label><input id="nombre" placeholder="Ej. Rosa glitter">
+  <label>Categoría (si escribes una nueva, se crea sola)</label><input id="cat" value="Rosas">
+  <label>Precio</label><input id="precio" type="number" value="35">
+</div>
+
+<div class="step"><b>Vista previa</b><div class="pv" id="pv"><small>Sube una foto para verla</small></div></div>
+
+<div class="step"><b>Paso 3 · Guarda y copia</b><br>
+  <button id="dl1">⬇ Descargar foto</button><button id="dl2" style="display:none">⬇ Descargar foto dorada</button>
+  <small><br>Guarda la(s) foto(s) en la carpeta <b>charms</b>, sin cambiarles el nombre.</small>
+  <label>Esta línea ya está lista, pégala en charms.js (arriba del último <b>];</b>)</label>
+  <textarea id="linea" readonly></textarea><button id="copiar">Copiar línea</button>
+</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const slug=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"charm";
+const R={}; // fotos ya procesadas
+const cargar=f=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=URL.createObjectURL(f)});
+// "Solo el diseño": se recorta a 500x300 (proporción de la placa). "Foto completa": se reduce a 600 px de ancho.
+async function procesar(file,tipo){
+  const img=await cargar(file),c=document.createElement("canvas"),x=c.getContext("2d");
+  if(tipo=="cara"){c.width=500;c.height=300;const s=Math.max(500/img.width,300/img.height),w=img.width*s,h=img.height*s;x.drawImage(img,(500-w)/2,(300-h)/2,w,h);
+    return new Promise(r=>c.toBlob(b=>r({blob:b,ext:"jpg"}),"image/jpeg",.9))}
+  const s=Math.min(1,600/img.width);c.width=img.width*s;c.height=img.height*s;x.drawImage(img,0,0,c.width,c.height);
+  return new Promise(r=>c.toBlob(b=>r({blob:b,ext:"png"}),"image/png"));
+}
+async function leer(k,inp){R[k]=inp.files[0]?await procesar(inp.files[0],$("tipo").value):null;actualizar()}
+$("f1").onchange=()=>leer("a",$("f1"));$("f2").onchange=()=>leer("b",$("f2"));
+function actualizar(){
+  const tipo=$("tipo").value,id=slug($("nombre").value),a=R.a,b=R.b;
+  $("w2").style.display=tipo=="foto"?"block":"none";
+  $("dl2").style.display=tipo=="foto"&&b?"inline-block":"none";
+  if(a){const u=URL.createObjectURL(a.blob);
+    $("pv").innerHTML=tipo=="foto"?`<div class="charm"><img src="${u}"></div>`:`<div class="charm"><img src="charms/base-plateado.png"><div class="cara" style="background-image:url(${u})"></div></div>`}
+  const pre=`{id:"${id}", cat:"${$("cat").value.trim()||"Rosas"}", name:"${$("nombre").value.trim()||id}", price:${+$("precio").value||0}, `;
+  $("linea").value=a?pre+(tipo=="cara"?`cara:"charms/${id}.${a.ext}"`:`foto:"charms/${id}.${a.ext}"`+(b?`, fotoDorado:"charms/${id}-dorado.${b.ext}"`:""))+"},":"";
+}
+["tipo","nombre","cat","precio"].forEach(i=>$(i).oninput=()=>{if(i=="tipo"){R.a=R.b=null;$("f1").value=$("f2").value="";$("pv").innerHTML="<small>Sube una foto para verla</small>"}actualizar()});
+function bajar(r,nombre){const a=document.createElement("a");a.href=URL.createObjectURL(r.blob);a.download=nombre;a.click()}
+$("dl1").onclick=()=>R.a?bajar(R.a,slug($("nombre").value)+"."+R.a.ext):alert("Primero sube una foto");
+$("dl2").onclick=()=>R.b&&bajar(R.b,slug($("nombre").value)+"-dorado."+R.b.ext);
+$("copiar").onclick=async()=>{if(!$("linea").value)return alert("Primero sube una foto y pon el nombre");try{await navigator.clipboard.writeText($("linea").value)}catch(_){$("linea").select();document.execCommand("copy")}alert("¡Línea copiada! Pégala en charms.js")};
+</script>
+</body>
+</html>
