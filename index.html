@@ -24,7 +24,23 @@
 }
 
 html{scroll-behavior:smooth}
-*{box-sizing:border-box}
+
+/* DESACTIVAR SELECCIÓN DE TEXTO EN TODA LA PÁGINA */
+*, *::before, *::after {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* PERMITIR SELECCIÓN ÚNICAMENTE EN EL CAMPO DEL CÓDIGO */
+#code {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
 
 body{
   margin:0;
@@ -368,7 +384,7 @@ dialog{
 #dFull{max-width:min(1100px,96vw);width:96vw}
 #fullB{flex-wrap:nowrap;overflow-x:auto;gap:0;justify-content:safe center;background:#f5f5f5}
 
-.tile,.charm,.charm *,button{user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.tile,.charm,.charm *,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .charm img{-webkit-user-drag:none;pointer-events:none}
 
 .ayuda{display:inline-grid;place-items:center;width:22px;height:22px;margin-left:10px;border-radius:50%;border:1.5px solid #fff;color:#fff;font:800 13px Poppins,Arial,sans-serif;cursor:help;vertical-align:middle;text-shadow:none;outline:none}
