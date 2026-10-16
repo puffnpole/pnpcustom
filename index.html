@@ -54,8 +54,34 @@ body::after{
 
 main{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 16px 40px}
 
+/* BOTONES FLOTANTES EN LAS ESQUINAS SUPERIORES */
+.top-corner-btn {
+  position: fixed;
+  top: 16px;
+  z-index: 50;
+  font: 800 11px Poppins, Helvetica, Arial, sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--hot-pink-deep);
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: all .2s ease;
+}
+.top-corner-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+.btn-top-left { left: 16px; }
+.btn-top-right { right: 16px; }
+
 /* HERO SECTION CON LOGO DEGRADADO */
-.hero{text-align:center;padding:25px 0 10px;position:relative;z-index:2}
+.hero{text-align:center;padding:35px 0 10px;position:relative;z-index:2}
 .spark{color:#fff;letter-spacing:.6em;font-size:18px;text-shadow:0 0 12px var(--hot-pink-glow)}
 
 .glitter{
@@ -137,7 +163,7 @@ main{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 16px 40
   font-size: 9px;
 }
 
-/* BOTONES */
+/* BOTONES GENERALES */
 button,.btn{
   font:800 11px Poppins,Helvetica,Arial,sans-serif;
   letter-spacing:.08em;
@@ -361,6 +387,13 @@ footer{text-align:center;color:var(--mut);font-size:13px;margin-top:40px}footer 
 </style>
 </head>
 <body>
+
+<!-- BOTÓN ESQUINA SUPERIOR IZQUIERDA (Redes sociales / Carrd) -->
+<a href="https://puffandpole.carrd.co/" target="_blank" class="top-corner-btn btn-top-left">Regresar</a>
+
+<!-- BOTÓN ESQUINA SUPERIOR DERECHA (Formulario de Google de pedidos) -->
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfJNQYuAwuHFXDIfbl3kfGj0Uo8v9cX-DUe9Rtp2HrefWZlsA/viewform?usp=publish-editor" target="_blank" class="top-corner-btn btn-top-right">Hacer pedido</a>
+
 <main>
 
 <!-- SEMICÍRCULOS GIGANTES DE FONDO CON CHARMS Y BASES PLATEADAS Y DORADAS -->
@@ -448,7 +481,7 @@ function buildHeroOrbit(){
   const list = defaultLisos.concat(CHARMS);
 
   const count = 5;
-  const radius = 280; // Coincide exactamente con el radio de .arc-orbit (560px de ancho/alto / 2)
+  const radius = 280;
   const charmWidth = 54;
   const charmHeight = 50;
 
@@ -457,7 +490,6 @@ function buildHeroOrbit(){
     itemLeft.className = "orbit-item";
     const angleLeft = (i * (360 / count)) * (Math.PI / 180);
     
-    // Alineación centrada geométrica exacta sobre la línea del radio
     const xL = radius * Math.cos(angleLeft);
     const yL = radius * Math.sin(angleLeft);
     itemLeft.style.left = (radius + xL) + "px";
