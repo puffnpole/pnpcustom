@@ -72,36 +72,36 @@ main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 16px 4
 
 .hero p{color:var(--mut);max-width:540px;margin:0 auto 10px;font-size:15px;font-weight:500}
 
-/* SEMICÍRCULOS GIGANTES A LOS LADOS */
+/* SEMICÍRCULOS PEGADOS A LAS PAREDES DE LA PÁGINA */
 .hero-circles-container {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  width: 100%;
-  height: 600px;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .arc-orbit {
   position: absolute;
-  width: 520px;
-  height: 520px;
-  border: 2px dashed rgba(255, 255, 255, 0.45);
+  width: 560px;
+  height: 560px;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
   border-radius: 50%;
-  top: 10px;
+  top: 20%;
 }
 
 .arc-left {
-  left: -260px;
+  left: -280px; /* Pegado exactamente a la pared izquierda */
   transform-origin: center center;
-  animation: rotateClockwise 28s linear infinite;
+  animation: rotateClockwise 32s linear infinite;
 }
 
 .arc-right {
-  right: -260px;
+  right: -280px; /* Pegado exactamente a la pared derecha */
   transform-origin: center center;
-  animation: rotateCounterClockwise 28s linear infinite;
+  animation: rotateCounterClockwise 32s linear infinite;
 }
 
 @keyframes rotateClockwise {
