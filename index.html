@@ -3,82 +3,332 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Personalizador de pulseras</title>
+<title>Puff & Pole · Personaliza tu pulsera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800;1,900&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#0d0409;--card:#1b0a14;--ink:#fff0f7;--mut:#e0a9c6;--pink:#ff2d95;--pink2:#ff9fd0;--line:#5a1c3f}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --hot-pink: #ff007f;
+  --hot-pink-deep: #d6006b;
+  --hot-pink-glow: #ff4fa8;
+  --bg-grad-1: #ff007f;
+  --bg-grad-2: #800040;
+  --card-bg: rgba(255, 255, 255, 0.22);
+  --card-border: rgba(255, 255, 255, 0.45);
+  --ink: #ffffff;
+  --mut: #ffd0e5;
+}
+
+html{scroll-behavior:smooth}
 *{box-sizing:border-box}
-body{margin:0;color:var(--ink);font-family:Poppins,"Segoe UI",Helvetica,Arial,sans-serif;min-height:100vh;
- background:radial-gradient(circle at 12% 0,#6a1042 0,transparent 45%),radial-gradient(circle at 92% 35%,#4a0b30 0,transparent 40%),var(--bg)}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;animation:tw 3.5s ease-in-out infinite alternate;background-size:260px 220px;
- background-image:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(2.5px 2.5px at 150px 90px,#ff9fd0,transparent),radial-gradient(1.5px 1.5px at 90px 170px,#fff,transparent),radial-gradient(2px 2px at 220px 40px,#ff4fa8,transparent),radial-gradient(1.5px 1.5px at 60px 110px,#ffd1ea,transparent)}
-@keyframes tw{from{opacity:.3}to{opacity:1}}
+
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:Poppins,"Segoe UI",Helvetica,Arial,sans-serif;
+  min-height:100vh;
+  background: radial-gradient(circle at 50% 10%, #ff3399 0%, var(--bg-grad-1) 50%, var(--bg-grad-2) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  animation:tw 3.5s ease-in-out infinite alternate;
+  background-size:260px 220px;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px,#fff,transparent),
+    radial-gradient(2.5px 2.5px at 150px 90px,#ffb3d9,transparent),
+    radial-gradient(1.5px 1.5px at 90px 170px,#fff,transparent),
+    radial-gradient(2px 2px at 220px 40px,#ff80bf,transparent);
+}
+@keyframes tw{from{opacity:.2}to{opacity:.8}}
+
+main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 16px 40px}
+
+/* HERO SECTION CON LOGO DEGRADADO */
+.hero{text-align:center;padding:25px 0 10px;position:relative;z-index:2}
+.spark{color:#fff;letter-spacing:.6em;font-size:18px;text-shadow:0 0 12px var(--hot-pink-glow)}
+
+.glitter{
+  font:italic 900 clamp(42px,10vw,72px)/1.1 "Playfair Display",Georgia,serif;
+  margin:6px 0;
+  background:linear-gradient(100deg,#ffffff 0%,#ffd1ea 22%,#ff007f 45%,#ffffff 55%,#ffd1ea 75%);
+  background-size:250% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:shine 5s linear infinite;
+  filter:drop-shadow(0 0 18px rgba(255,255,255,0.6));
+}
 @keyframes shine{to{background-position:-250% 0}}
-main{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 14px 30px}
-.hero{text-align:center;padding:30px 0 8px}
-.spark{color:var(--pink2);letter-spacing:.6em;font-size:18px;text-shadow:0 0 10px var(--pink)}
-.glitter{font:italic 800 clamp(38px,9vw,64px)/1.1 "Playfair Display",Georgia,serif;margin:6px 0;background:linear-gradient(100deg,#ff2d95 0,#ffd1ea 22%,#ff2d95 45%,#fff 55%,#ff2d95 75%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite;filter:drop-shadow(0 0 14px rgba(255,45,149,.65))}
-.hero p{color:var(--mut);max-width:520px;margin:0 auto 14px;font-size:14px}
-.chain{height:14px;margin:14px 0;filter:drop-shadow(0 0 4px var(--pink));background:radial-gradient(circle at 7px 7px,#fff 0 2.5px,#ffb3d9 3px 5px,#ff2d95 5.5px 6.5px,transparent 7px) 0 0/14px 14px repeat-x}
-.links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px}
-button,.btn{font:800 12px Poppins,Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(#ff4fa8,#e0107a);border:1px solid var(--pink2);border-radius:999px;padding:11px 18px;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 0 14px rgba(255,45,149,.55)}
-.ghost{background:transparent;color:var(--pink2);box-shadow:none}
-h2{font:italic 800 30px "Playfair Display",Georgia,serif;text-align:center;margin:10px 0 4px;color:var(--pink2);text-shadow:0 0 14px var(--pink)}
-.sub{text-align:center;color:var(--mut);font-size:14px;margin:0 0 16px}
-.panel{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(27,10,20,.92);backdrop-filter:blur(8px);border:2px solid var(--pink);border-radius:22px;padding:16px;box-shadow:0 0 28px rgba(255,45,149,.45)}
-.well{display:flex;flex-wrap:wrap;gap:2px;align-content:flex-start;padding:10px;background:linear-gradient(#ffe0ef,#fff8fc);border:1px solid var(--pink2);border-radius:12px}
-#bracelet{min-height:104px;flex-wrap:nowrap;overflow-x:auto;scrollbar-color:#ff2d95 #ffe0ef}
-.empty{margin:auto;color:#b04a85;font-size:14px;text-align:center}
-.tools{display:none;gap:6px;justify-content:center;margin-top:8px}.tools button{padding:7px 13px}
-.pf{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:8px;flex-wrap:wrap}
-.pf .l{display:flex;gap:8px}.pf .r{text-align:right;font-weight:800;line-height:1.4}
-.pill{background:#fff;color:#b04a85;box-shadow:none}
-.pill.g{background:#fff;color:#b04a85}
-.pill.on{outline:3px solid var(--pink);outline-offset:2px;box-shadow:0 0 14px var(--pink)}
-.acts,.size{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0 8px;align-items:center}
-select,#search,#code{font:14px Poppins,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px}
-#sizeinfo{text-align:center;color:var(--mut);font-size:13px;min-height:18px}
-.codebar{display:flex;gap:8px;background:rgba(255,45,149,.12);border-radius:14px;padding:8px}
-#code{flex:1;min-width:0;border:0;background:transparent;text-align:center;font:13px monospace}
-#search{width:100%;margin:20px 0 4px;padding:14px 16px}
-.cat h3{font:italic 800 21px "Playfair Display",Georgia,serif;color:var(--pink2);border-bottom:1px solid var(--pink);padding-bottom:6px;margin:28px 0 12px;text-shadow:0 0 10px rgba(255,45,149,.6)}
-.grid{display:flex;flex-wrap:wrap;gap:12px}
-.tile{background:#fff;border:2px solid transparent;border-radius:14px;padding:8px 8px 4px;display:grid;justify-items:center;gap:2px;cursor:pointer}
-.tile:hover{border-color:var(--pink);box-shadow:0 0 16px var(--pink)}
-.tile small{color:#8a2a5c;font-weight:800;font-size:11px}
-.charm{position:relative;font-size:11px;width:5.4em;height:4.9em;flex:none;cursor:pointer;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
-.tile .charm{font-size:13px}
+
+.hero p{color:var(--mut);max-width:540px;margin:0 auto 10px;font-size:15px;font-weight:500}
+
+/* SEMICÍRCULOS GIGANTES A LOS LADOS */
+.hero-circles-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.arc-orbit {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border: 2px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  top: 10px;
+}
+
+.arc-left {
+  left: -260px;
+  transform-origin: center center;
+  animation: rotateClockwise 28s linear infinite;
+}
+
+.arc-right {
+  right: -260px;
+  transform-origin: center center;
+  animation: rotateCounterClockwise 28s linear infinite;
+}
+
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* CHARMS FLOTANDO EN LA ÓRBITA */
+.orbit-item {
+  position: absolute;
+  width: 54px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -27px;
+  border-radius: 12px;
+  background: transparent; /* ← Fondo totalmente transparente */
+  border: none;             /* ← Sin bordes cuadrados */
+  box-shadow: none;         /* ← Sin sombras de caja */
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-item .charm {
+  font-size: 9px;
+}
+
+/* BOTONES */
+button,.btn{
+  font:800 12px Poppins,Helvetica,Arial,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--hot-pink-deep);
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius:999px;
+  padding:12px 22px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  box-shadow:0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: all .2s ease;
+}
+button:hover,.btn:hover{
+  transform: translateY(-2px);
+  box-shadow:0 8px 25px rgba(255, 255, 255, 0.4);
+}
+.ghost{
+  background:transparent;
+  color:#ffffff;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow:none;
+}
+.ghost:hover{
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
+h2{
+  font:italic 800 32px "Playfair Display",Georgia,serif;
+  text-align:center;
+  margin:10px 0 4px;
+  color:#ffffff;
+  text-shadow:0 0 16px rgba(255,255,255,0.5);
+}
+.sub{text-align:center;color:#ffffff;font-size:16px;margin:10px 0 12px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.3)}
+
+/* PANEL DEL PERSONALIZADOR */
+#custom {
+  position: relative;
+  z-index: 3;
+  margin-top: 5px;
+}
+
+.panel{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:5;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--card-border);
+  border-radius:28px;
+  padding:18px;
+  box-shadow:0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.well{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  align-content:flex-start;
+  padding:14px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius:18px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+}
+#bracelet{
+  min-height:115px;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  scrollbar-color: var(--hot-pink) #ffe0ef;
+}
+.empty{margin:auto;color:#b04a85;font-size:14px;text-align:center;font-weight:700}
+
+.tools{display:none;gap:8px;justify-content:center;margin-top:12px}.tools button{padding:8px 16px}
+
+.pf{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px;flex-wrap:wrap}
+.pf .l{display:flex;gap:10px}.pf .r{text-align:right;font-weight:800;line-height:1.4}
+
+.pill{
+  background:#ffffff;
+  color:#333;
+  box-shadow:none;
+  padding: 8px 18px;
+  font-size: 11px;
+}
+.pill.on{
+  background: var(--hot-pink-deep);
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow:0 0 16px rgba(255, 255, 255, 0.6);
+}
+
+.acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 10px;align-items:center}
+select,#search,#code{
+  font:14px Poppins,Helvetica,Arial,sans-serif;
+  color:#ffffff;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius:14px;
+  padding:12px;
+}
+#search::placeholder{color: var(--mut)}
+.codebar{display:flex;gap:8px;background:rgba(0, 0, 0, 0.2);border-radius:16px;padding:8px;border: 1px solid rgba(255, 255, 255, 0.2)}
+#code{flex:1;min-width:0;border:0;background:transparent;text-align:center;font:13px monospace;color:#fff}
+#search{width:100%;margin:16px 0 8px;padding:16px 20px;font-size:15px}
+
+/* TARJETAS DEL CATÁLOGO */
+.cat h3{
+  font:italic 800 24px "Playfair Display",Georgia,serif;
+  color:#ffffff;
+  border-bottom:2px solid rgba(255,255,255,0.3);
+  padding-bottom:8px;
+  margin:28px 0 16px;
+  text-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap:16px;
+}
+.tile{
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid transparent;
+  border-radius:20px;
+  padding:12px 8px 8px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: all .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.tile:hover{
+  transform: translateY(-4px) scale(1.03);
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  border-color: var(--hot-pink-glow);
+}
+.tile small{color:#333;font-weight:800;font-size:12px;display:block}
+
+.charm{position:relative;font-size:12px;width:5.4em;height:4.9em;flex:none;cursor:pointer;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.25))}
+.tile .charm{font-size:14px}
 .charm img{width:100%;height:100%;display:block;object-fit:contain}
 .cara{position:absolute;left:3%;top:22%;width:83.5%;height:56%;background:center/cover no-repeat;display:grid;place-items:center;overflow:hidden}
 .cara b{font:800 .9em/1 Poppins,Arial,sans-serif;color:#111;text-align:center}
-#bracelet .charm.sel{outline:3px solid var(--pink);outline-offset:1px;border-radius:4px}
-dialog{max-width:560px;width:calc(100% - 28px);background:var(--card);color:var(--ink);border:2px solid var(--pink);border-radius:18px;padding:16px;box-shadow:0 0 30px rgba(255,45,149,.5)}
+#bracelet .charm.sel{outline:3px solid var(--hot-pink-deep);outline-offset:2px;border-radius:6px}
+
+/* MODALES */
+dialog{
+  max-width:560px;
+  width:calc(100% - 28px);
+  background: #ffffff;
+  color: #333;
+  border: none;
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
 #dFull{max-width:min(1100px,96vw);width:96vw}
-#fullB{flex-wrap:nowrap;overflow-x:auto;gap:0;justify-content:safe center}
+#fullB{flex-wrap:nowrap;overflow-x:auto;gap:0;justify-content:safe center;background:#f5f5f5}
+
 .tile,.charm,.charm *,button{user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .charm img{-webkit-user-drag:none;pointer-events:none}
-.tile small{display:none}
-.tile{padding:8px}
-@media (min-width:900px){body{zoom:.85}}
-.cat h3{position:relative}
-.ayuda{display:inline-grid;place-items:center;width:22px;height:22px;margin-left:10px;border-radius:50%;border:1.5px solid var(--pink2);color:var(--pink2);font:800 13px Poppins,Arial,sans-serif;cursor:help;vertical-align:middle;text-shadow:none;outline:none}
-.tip{display:none;position:absolute;left:0;top:100%;width:min(300px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--pink);border-radius:12px;padding:12px 14px;box-shadow:0 0 18px rgba(255,45,149,.5);font:500 12px/1.6 Poppins,Arial,sans-serif;text-align:left;text-shadow:none;z-index:20}
+
+.ayuda{display:inline-grid;place-items:center;width:22px;height:22px;margin-left:10px;border-radius:50%;border:1.5px solid #fff;color:#fff;font:800 13px Poppins,Arial,sans-serif;cursor:help;vertical-align:middle;text-shadow:none;outline:none}
+.tip{display:none;position:absolute;left:0;top:100%;width:min(300px,86vw);background:#fff;color:#333;border-radius:14px;padding:14px;box-shadow:0 10px 25px rgba(0,0,0,0.3);font:500 12px/1.6 Poppins,Arial,sans-serif;text-align:left;z-index:20}
 .ayuda:hover .tip,.ayuda:focus .tip{display:block}
-dialog::backdrop{background:rgba(0,0,0,.7)}
-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}th,td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
-.small{color:var(--mut);font-size:13px}
-details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0}
-summary{font-weight:700;cursor:pointer}details p{color:var(--mut);font-size:13px;line-height:1.5;margin:8px 0 0}
-footer{text-align:center;color:var(--mut);font-size:12px;margin-top:36px}footer a{color:var(--pink2);margin:0 8px}
-#toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--pink);color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40;max-width:90%;text-align:center}
+dialog::backdrop{background:rgba(0,0,0,0.75);backdrop-filter:blur(4px)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}th,td{padding:8px 6px;border-bottom:1px solid #eee;text-align:left}
+.small{color:#666;font-size:13px}
+
+details{background:var(--card-bg);backdrop-filter:blur(10px);border:1px solid var(--card-border);border-radius:16px;padding:14px 18px;margin:12px 0}
+summary{font-weight:700;cursor:pointer;color:#fff}details p{color:var(--mut);font-size:14px;line-height:1.5;margin:10px 0 0}
+
+footer{text-align:center;color:var(--mut);font-size:13px;margin-top:40px}footer a{color:#fff;margin:0 8px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#ffffff;color:var(--hot-pink-deep);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,0.4);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40;max-width:90%;text-align:center}
 #toast.on{opacity:1}
 </style>
 </head>
 <body>
 <main>
+
+<!-- SEMICÍRCULOS GIGANTES DE FONDO CON CHARMS Y BASES PLATEADAS Y DORADAS -->
+<div class="hero-circles-container">
+  <div class="arc-orbit arc-left" id="orbitLeft"></div>
+  <div class="arc-orbit arc-right" id="orbitRight"></div>
+</div>
+
 <header class="hero">
   <div class="spark">✦ ✧ ✦ ✧ ✦</div>
   <h1 class="glitter" id="brand"></h1>
@@ -103,23 +353,24 @@ footer{text-align:center;color:var(--mut);font-size:12px;margin-top:36px}footer 
 </section>
 
 <section id="faq">
-  <h2 style="margin-top:40px">Preguntas frecuentes</h2>
-  <details><summary>¿Cuántos charms necesito para armar mi pulsera completa?</summary><p>Mujeres: necesitan de 16 a 18 charms aproximadamente.
-    Hombres: necesitan de 18 a 21 charms aproximadamente.</p></details>
+  <h2 style="margin-top:50px">Preguntas frecuentes</h2>
+  <details><summary>¿Cuántos charms necesito para armar mi pulsera completa?</summary><p>Mujeres: necesitan de 16 a 18 charms aproximadamente.<br>Hombres: necesitan de 18 a 21 charms aproximadamente.</p></details>
   <details><summary>¿De qué material son?</summary><p>Todos nuestros charms y eslabones son de acero inoxidable, en acabado plateado o dorado.</p></details>
   <details><summary>¿Cómo hago mi pedido?</summary><p>Copia el código de tu pulsera y pégalo en el formulario de pedido junto con tus datos.</p></details>
 </section>
 <footer><div id="social"></div><p id="copyright"></p></footer>
 </main>
 
-<dialog id="dSize"><h3 style="margin:0">Guía de tallas</h3>
+<dialog id="dSize"><h3>Guía de tallas</h3>
   <table id="tbl"><tr><th>Talla</th><th>Charms</th><th>Muñeca (cm)</th><th>Muñeca (in)</th></tr></table>
   <p class="small"><b>Tip:</b> si estás entre tallas, elige la mayor.</p>
   <button onclick="this.closest('dialog').close()">Cerrar</button></dialog>
-<dialog id="dFull"><h3 style="margin:0">Tu diseño completo</h3>
+
+<dialog id="dFull"><h3>Tu diseño completo</h3>
   <p class="small">📸 Toma captura para tu referencia. Recibirás exactamente estos charms.</p>
-  <div id="fullB" class="well" style="margin:10px 0"></div><div id="fullT"></div>
+  <div id="fullB" class="well" style="margin:12px 0"></div><div id="fullT"></div>
   <button onclick="this.closest('dialog').close()">Cerrar</button></dialog>
+
 <div id="toast"></div>
 
 <script src="charms.js"></script>
@@ -132,7 +383,6 @@ const mt=c=>c.m||metal;
 const unit=c=>c.price+(mt(c)=="dorado"?EXTRA_DORADO:0);
 const toast=m=>{const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)};
 
-// Un charm = foto. Si tiene "foto" se muestra completa; si no, se pone el diseño ("cara") sobre la base.
 function charmEl(c){
   const d=document.createElement("div");d.className="charm";
   const img=document.createElement("img");img.alt=c.name||"";
@@ -143,12 +393,51 @@ function charmEl(c){
   d.appendChild(f);return d;
 }
 
-$("brand").textContent=BRAND;$("tagline").textContent=TAGLINE;document.title=BRAND+" · Arma tu pulsera";
+$("brand").textContent=BRAND;$("tagline").textContent=TAGLINE;document.title=BRAND+" · Personaliza tu pulsera";
 $("copyright").textContent="© "+BRAND+" "+new Date().getFullYear();
+
+/* CONSTRUCCIÓN DE CHARMS CON BASES LISAS PLATEADA, DORADA Y CATÁLOGO EN LOS ARCOS */
+function buildHeroOrbit(){
+  const left=$("orbitLeft"), right=$("orbitRight");
+  left.innerHTML=""; right.innerHTML="";
+  
+  // Incluimos explícitamente los charms lisos de base en plateado y dorado junto con el catálogo
+  const defaultLisos = [
+    {id:"liso-p", cat:"Lisos", name:"Liso plateado", price:35, m:"plateado"},
+    {id:"liso-d", cat:"Lisos", name:"Liso dorado", price:35, m:"dorado"}
+  ];
+  const list = defaultLisos.concat(CHARMS);
+
+  const count = 5;
+  const radius = 260;
+
+  for(let i=0; i<count; i++){
+    const itemLeft = document.createElement("div");
+    itemLeft.className = "orbit-item";
+    const angleLeft = (i * (360 / count)) * (Math.PI / 180);
+    const xL = radius * Math.cos(angleLeft) + radius;
+    const yL = radius * Math.sin(angleLeft) + radius;
+    itemLeft.style.left = xL + "px";
+    itemLeft.style.top = yL + "px";
+    itemLeft.appendChild(charmEl(list[i % list.length]));
+    left.appendChild(itemLeft);
+
+    const itemRight = document.createElement("div");
+    itemRight.className = "orbit-item";
+    const angleRight = (i * (360 / count) + 36) * (Math.PI / 180);
+    const xR = radius * Math.cos(angleRight) + radius; 
+    const yR = radius * Math.sin(angleRight) + radius;
+    itemRight.style.left = xR + "px";
+    itemRight.style.top = yR + "px";
+    itemRight.appendChild(charmEl(list[(i + 2) % list.length]));
+    right.appendChild(itemRight);
+  }
+}
 
 function filtrar(){const q=norm($("search").value.trim());document.querySelectorAll(".cat").forEach(s=>s.style.display=s.dataset.n.includes(q)?"":"none")}
 $("search").oninput=filtrar;
-const AYUDA=`<span class="ayuda" tabindex="0">?<span class="tip"><b>Para tu imagen:</b><br>• Formato <b>JPG</b> (no PNG).<br>• Medida recomendada: <b>1000 × 600 px</b> (horizontal, proporción 5:3).<br>• Evita muchos detalles o letras muy pequeñas: en un charm tan chico no se aprecian.<br>• Lo más importante, al centro: los bordes pueden recortarse.</span></span>`;
+const AYUDA=`<span class="ayuda" tabindex="0">?<span class="tip"><b>Para tu imagen:</b><br>• Formato <b>JPG</b>.<br>• Medida recomendada: <b>1000 × 600 px</b>.<br>• Lo más importante al centro.</span></span>`;
+
 function buildCatalog(){
   const box=$("catalog");box.innerHTML="";
   const cats=[...new Set(CHARMS.map(c=>c.cat))].concat("Tu imagen");
@@ -156,13 +445,14 @@ function buildCatalog(){
     const s=document.createElement("section");s.className="cat";s.dataset.n=norm(cat);
     s.innerHTML=`<h3>✦ ${cat}${cat=="Tu imagen"?AYUDA:""}</h3><div class="grid"></div>`;const g=s.querySelector(".grid");
     const tile=(c,fn)=>{const t=document.createElement("div");t.className="tile";t.title=c.name||"";t.appendChild(charmEl(c));
-      const p=document.createElement("small");p.textContent=fmt(unit(c));t.appendChild(p);t.onclick=fn;g.appendChild(t)};
+      t.onclick=fn;g.appendChild(t)};
     if(cat=="Tu imagen"){const c={name:"Tu imagen",price:PRECIO_IMAGEN_PROPIA};tile(c,()=>$("file").click());
       const f=g.querySelector(".cara");f.style.background="#fff";f.innerHTML="<b>TU<br>FOTO</b>"}
     else CHARMS.filter(c=>c.cat==cat).forEach(c=>tile(c,()=>{sel.push({...c,m:metal});cur=-1;render();$("bracelet").scrollLeft=1e6}));
     box.appendChild(s);
   });filtrar();
 }
+
 document.querySelectorAll(".pill").forEach(b=>b.onclick=()=>{metal=b.dataset.m;document.querySelectorAll(".pill").forEach(x=>x.classList.toggle("on",x==b));buildCatalog();render()});
 
 function render(){
@@ -175,28 +465,35 @@ function render(){
   $("total").textContent="Total: "+fmt(total);$("count").textContent="Charms: "+sel.length;
   $("code").value="";
 }
+
 $("clear").onclick=()=>{sel=[];cur=-1;render()};
 $("del").onclick=()=>{sel.splice(cur,1);cur=-1;render()};
 $("swap").onclick=()=>{if(cur>=0){sel[cur]={...sel[cur],m:mt(sel[cur])=="dorado"?"plateado":"dorado"};render()}};
 $("mvL").onclick=()=>{if(cur>0){[sel[cur-1],sel[cur]]=[sel[cur],sel[cur-1]];cur--;render()}};
 $("mvR").onclick=()=>{if(cur<sel.length-1){[sel[cur+1],sel[cur]]=[sel[cur],sel[cur+1]];cur++;render()}};
+
 $("copy").onclick=async()=>{
   if(!sel.length)return toast("Tu pulsera está vacía");
   const txt=sel.map(c=>(c.custom?"IMG":c.id)+":"+mt(c)[0].toUpperCase()).join(",");
   $("code").value=txt;
   try{await navigator.clipboard.writeText(txt)}catch(_){$("code").select();document.execCommand("copy")}
   toast("¡Código copiado! Pégalo en el formulario de pedido")};
+
 $("file").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
   r.onload=()=>{sel.push({id:"IMG",custom:true,name:"Tu imagen",cara:r.result,price:PRECIO_IMAGEN_PROPIA,cat:"Imagen propia",m:metal});render();$("bracelet").scrollLeft=1e6;toast("Imagen añadida. Mándala junto con tu pedido.")};r.readAsDataURL(f);e.target.value=""};
+
 $("full").onclick=()=>{
   if(!sel.length)return toast("Tu pulsera está vacía");
   $("fullB").innerHTML="";sel.forEach(c=>{const b=charmEl(c);b.style.fontSize="13px";b.style.cursor="default";$("fullB").appendChild(b)});
   const by={};sel.forEach(c=>{const k=by[c.cat]=by[c.cat]||{n:0,s:0};k.n++;k.s+=unit(c)});
   $("fullT").innerHTML="<table>"+Object.entries(by).map(([k,v])=>`<tr><td>${k}</td><td>×${v.n}</td><td>${fmt(v.s)}</td></tr>`).join("")+`<tr><th>Plateados: ${sel.filter(c=>mt(c)=="plateado").length} · Dorados: ${sel.filter(c=>mt(c)=="dorado").length}</th><th>×${sel.length}</th><th>${fmt(sel.reduce((a,c)=>a+unit(c),0))}</th></tr></table>`;
   $("dFull").showModal();
-    const fs=Math.max(1,Math.min(13,($("fullB").clientWidth-24)/(sel.length*5.4)));
+  const fs=Math.max(1,Math.min(13,($("fullB").clientWidth-24)/(sel.length*5.4)));
   $("fullB").querySelectorAll(".charm").forEach(b=>{b.style.width=fs*5.4+"px";b.style.height=fs*4.9+"px"})};
-buildCatalog();render();
+
+buildCatalog();
+buildHeroOrbit();
+render();
 </script>
 </body>
 </html>
