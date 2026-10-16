@@ -91,7 +91,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;margin-top:36px}footer 
     </div>
   </div>
   <div class="acts"><button id="full">Ver diseño completo</button><button class="ghost" id="clear">Hacer pulsera nueva</button><button id="copy">Copiar código</button></div>
-  <div class="codebar"><input id="code" placeholder="..."><button class="ghost" id="load">Cargar código</button></div>
+  <div class="codebar"><input id="code" placeholder="..." readonly></div>
   <input id="search" type="search" placeholder="Buscar categorías (p. ej., Rosas, Body, Lisos)...">
   <div id="catalog"></div>
   <input type="file" id="file" accept="image/*" hidden>
@@ -167,17 +167,19 @@ function render(){
   $("tools").style.display=cur>=0?"flex":"none";
   const total=sel.reduce((a,c)=>a+unit(c),0);
   $("total").textContent="Total: "+fmt(total);$("count").textContent="Charms: "+sel.length;
-  $("code").value=sel.map(c=>(c.custom?"IMG":c.id)+":"+mt(c)[0].toUpperCase()).join(",");
+  $("code").value="";
 }
 $("clear").onclick=()=>{sel=[];cur=-1;render()};
 $("del").onclick=()=>{sel.splice(cur,1);cur=-1;render()};
 $("swap").onclick=()=>{if(cur>=0){sel[cur]={...sel[cur],m:mt(sel[cur])=="dorado"?"plateado":"dorado"};render()}};
 $("mvL").onclick=()=>{if(cur>0){[sel[cur-1],sel[cur]]=[sel[cur],sel[cur-1]];cur--;render()}};
 $("mvR").onclick=()=>{if(cur<sel.length-1){[sel[cur+1],sel[cur]]=[sel[cur],sel[cur+1]];cur++;render()}};
-$("copy").onclick=async()=>{if(!sel.length)return toast("Tu pulsera está vacía");try{await navigator.clipboard.writeText($("code").value)}catch(_){$("code").select();document.execCommand("copy")}toast("¡Código copiado! Pégalo en el formulario de pedido")};
-$("load").onclick=()=>{
-  sel=$("code").value.trim().split(",").map(p=>{const[id,m]=p.split(":");const c=CHARMS.find(x=>x.id==id);return c&&{...c,m:m=="D"?"dorado":"plateado"}}).filter(Boolean);
-  if(!sel.length)toast("Pega aquí un código válido");cur=-1;render()};
+$("copy").onclick=async()=>{
+  if(!sel.length)return toast("Tu pulsera está vacía");
+  const txt=sel.map(c=>(c.custom?"IMG":c.id)+":"+mt(c)[0].toUpperCase()).join(",");
+  $("code").value=txt;
+  try{await navigator.clipboard.writeText(txt)}catch(_){$("code").select();document.execCommand("copy")}
+  toast("¡Código copiado! Pégalo en el formulario de pedido")};
 $("file").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
   r.onload=()=>{sel.push({id:"IMG",custom:true,name:"Tu imagen",cara:r.result,price:PRECIO_IMAGEN_PROPIA,cat:"Imagen propia",m:metal});render();$("bracelet").scrollLeft=1e6;toast("Imagen añadida. Mándala junto con tu pedido.")};r.readAsDataURL(f);e.target.value=""};
 $("full").onclick=()=>{
