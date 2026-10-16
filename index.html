@@ -401,7 +401,6 @@ function buildHeroOrbit(){
   const left=$("orbitLeft"), right=$("orbitRight");
   left.innerHTML=""; right.innerHTML="";
   
-  // Incluimos explícitamente los charms lisos de base en plateado y dorado junto con el catálogo
   const defaultLisos = [
     {id:"liso-p", cat:"Lisos", name:"Liso plateado", price:35, m:"plateado"},
     {id:"liso-d", cat:"Lisos", name:"Liso dorado", price:35, m:"dorado"}
@@ -409,14 +408,17 @@ function buildHeroOrbit(){
   const list = defaultLisos.concat(CHARMS);
 
   const count = 5;
-  const radius = 260;
+  const radius = 280;
+  const charmWidth = 54;
+  const charmHeight = 50;
 
   for(let i=0; i<count; i++){
     const itemLeft = document.createElement("div");
     itemLeft.className = "orbit-item";
     const angleLeft = (i * (360 / count)) * (Math.PI / 180);
-    const xL = radius * Math.cos(angleLeft) + radius;
-    const yL = radius * Math.sin(angleLeft) + radius;
+    
+    const xL = radius + radius * Math.cos(angleLeft) - (charmWidth / 2);
+    const yL = radius + radius * Math.sin(angleLeft) - (charmHeight / 2);
     itemLeft.style.left = xL + "px";
     itemLeft.style.top = yL + "px";
     itemLeft.appendChild(charmEl(list[i % list.length]));
@@ -425,8 +427,9 @@ function buildHeroOrbit(){
     const itemRight = document.createElement("div");
     itemRight.className = "orbit-item";
     const angleRight = (i * (360 / count) + 36) * (Math.PI / 180);
-    const xR = radius * Math.cos(angleRight) + radius; 
-    const yR = radius * Math.sin(angleRight) + radius;
+    
+    const xR = radius + radius * Math.cos(angleRight) - (charmWidth / 2); 
+    const yR = radius + radius * Math.sin(angleRight) - (charmHeight / 2);
     itemRight.style.left = xR + "px";
     itemRight.style.top = yR + "px";
     itemRight.appendChild(charmEl(list[(i + 2) % list.length]));
