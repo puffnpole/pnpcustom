@@ -51,7 +51,7 @@ body::after{
 }
 @keyframes tw{from{opacity:.2}to{opacity:.8}}
 
-main{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 16px 40px}
+main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 16px 40px}
 
 /* HERO SECTION CON LOGO DEGRADADO */
 .hero{text-align:center;padding:25px 0 10px;position:relative;z-index:2}
@@ -255,29 +255,29 @@ select,#search,#code{
 
 /* TARJETAS DEL CATÁLOGO */
 .cat h3{
-  font:italic 800 24px "Playfair Display",Georgia,serif;
+  font:italic 800 19px "Playfair Display",Georgia,serif;
   color:#ffffff;
   border-bottom:2px solid rgba(255,255,255,0.3);
-  padding-bottom:8px;
-  margin:28px 0 16px;
-  text-shadow:0 2px 8px rgba(0,0,0,0.2);
+  padding-bottom:6px;
+  margin:22px 0 12px;
+  text-shadow:0 2px 6px rgba(0,0,0,0.2);
 }
 .grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap:16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+  gap: 10px;
 }
 .tile{
   background: rgba(255, 255, 255, 0.92);
   border: 2px solid transparent;
-  border-radius: 16px; /* Esquinas ligeramente más estilizadas */
-  padding: 8px 6px;    /* Más compacto */
+  border-radius: 14px;
+  padding: 6px 4px; /* Menos relleno para que el cuadro blanco sea más angosto/chiquito */
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:4px;
+  gap:2px;
   cursor:pointer;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   transition: all .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .tile:hover{
@@ -289,7 +289,9 @@ select,#search,#code{
 .tile small{color:#333;font-weight:800;font-size:12px;display:block}
 
 .charm{position:relative;font-size:12px;width:5.4em;height:4.9em;flex:none;cursor:pointer;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.25))}
-.tile .charm{font-size:14px}
+.tile .charm{
+  font-size: 10px;
+}
 .charm img{width:100%;height:100%;display:block;object-fit:contain}
 .cara{position:absolute;left:3%;top:22%;width:83.5%;height:56%;background:center/cover no-repeat;display:grid;place-items:center;overflow:hidden}
 .cara b{font:800 .9em/1 Poppins,Arial,sans-serif;color:#111;text-align:center}
