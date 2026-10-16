@@ -137,14 +137,14 @@ main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 16px 4
 
 /* BOTONES */
 button,.btn{
-  font:800 12px Poppins,Helvetica,Arial,sans-serif;
+  font:800 11px Poppins,Helvetica,Arial,sans-serif; /* Texto un punto más fino */
   letter-spacing:.08em;
   text-transform:uppercase;
   color:var(--hot-pink-deep);
   background: #ffffff;
   border: 2px solid #ffffff;
   border-radius:999px;
-  padding:12px 22px;
+  padding: 10px 18px; /* Padding reducido para que no ocupen tanto espacio */
   cursor:pointer;
   text-decoration:none;
   display:inline-block;
@@ -173,7 +173,14 @@ h2{
   color:#ffffff;
   text-shadow:0 0 16px rgba(255,255,255,0.5);
 }
-.sub{text-align:center;color:#ffffff;font-size:16px;margin:10px 0 12px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.3)}
+.sub{
+  text-align:center;
+  color:#ffffff;
+  font-size: 15px;
+  margin: 8px 0 14px;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
 
 /* PANEL DEL PERSONALIZADOR */
 #custom {
@@ -190,8 +197,8 @@ h2{
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 2px solid var(--card-border);
-  border-radius:28px;
-  padding:18px;
+  border-radius: 22px;
+  padding: 12px; /* Reducido para que se vea más compacto */
   box-shadow:0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
@@ -206,7 +213,7 @@ h2{
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
 }
 #bracelet{
-  min-height:115px;
+  min-height: 95px; /* Ligeramente más delgado */
   flex-wrap:nowrap;
   overflow-x:auto;
   scrollbar-color: var(--hot-pink) #ffe0ef;
@@ -263,14 +270,14 @@ select,#search,#code{
 .tile{
   background: rgba(255, 255, 255, 0.92);
   border: 2px solid transparent;
-  border-radius:20px;
-  padding:12px 8px 8px;
+  border-radius: 16px; /* Esquinas ligeramente más estilizadas */
+  padding: 8px 6px;    /* Más compacto */
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
+  gap:4px;
   cursor:pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
   transition: all .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .tile:hover{
