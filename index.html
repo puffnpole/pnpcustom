@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Puff & Pole · Personaliza tu pulsera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800;1,900&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
+<!-- Importación de Cinzel Decorative y Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
   box-sizing:border-box;
@@ -51,14 +52,14 @@ body::after{
 }
 @keyframes tw{from{opacity:.2}to{opacity:.8}}
 
-main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 16px 40px}
+main{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 16px 40px}
 
 /* HERO SECTION CON LOGO DEGRADADO */
 .hero{text-align:center;padding:25px 0 10px;position:relative;z-index:2}
 .spark{color:#fff;letter-spacing:.6em;font-size:18px;text-shadow:0 0 12px var(--hot-pink-glow)}
 
 .glitter{
-  font:italic 900 clamp(42px,10vw,72px)/1.1 "Playfair Display",Georgia,serif;
+  font:900 clamp(36px,8vw,62px)/1.1 "Cinzel Decorative", Georgia, serif;
   margin:6px 0;
   background:linear-gradient(100deg,#ffffff 0%,#ffd1ea 22%,#ff007f 45%,#ffffff 55%,#ffd1ea 75%);
   background-size:250% 100%;
@@ -67,6 +68,7 @@ main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 16px 40
   color:transparent;
   animation:shine 5s linear infinite;
   filter:drop-shadow(0 0 18px rgba(255,255,255,0.6));
+  letter-spacing: 0.02em;
 }
 @keyframes shine{to{background-position:-250% 0}}
 
@@ -93,13 +95,13 @@ main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 16px 40
 }
 
 .arc-left {
-  left: -280px; /* Pegado exactamente a la pared izquierda */
+  left: -280px;
   transform-origin: center center;
   animation: rotateClockwise 32s linear infinite;
 }
 
 .arc-right {
-  right: -280px; /* Pegado exactamente a la pared derecha */
+  right: -280px;
   transform-origin: center center;
   animation: rotateCounterClockwise 32s linear infinite;
 }
@@ -121,10 +123,10 @@ main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 16px 40
   height: 50px;
   margin-top: -25px;
   margin-left: -27px;
-  border-radius: 12px;
-  background: transparent; /* ← Fondo totalmente transparente */
-  border: none;             /* ← Sin bordes cuadrados */
-  box-shadow: none;         /* ← Sin sombras de caja */
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
   overflow: visible;
   display: flex;
   align-items: center;
@@ -137,14 +139,14 @@ main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 16px 40
 
 /* BOTONES */
 button,.btn{
-  font:800 11px Poppins,Helvetica,Arial,sans-serif; /* Texto un punto más fino */
+  font:800 11px Poppins,Helvetica,Arial,sans-serif;
   letter-spacing:.08em;
   text-transform:uppercase;
   color:var(--hot-pink-deep);
   background: #ffffff;
   border: 2px solid #ffffff;
-  border-radius:999px;
-  padding: 10px 18px; /* Padding reducido para que no ocupen tanto espacio */
+  border-radius: 6px;
+  padding: 6px 18px;
   cursor:pointer;
   text-decoration:none;
   display:inline-block;
@@ -167,17 +169,18 @@ button:hover,.btn:hover{
 }
 
 h2{
-  font:italic 800 32px "Playfair Display",Georgia,serif;
+  font:700 26px "Cinzel Decorative", Georgia, serif;
   text-align:center;
   margin:10px 0 4px;
   color:#ffffff;
   text-shadow:0 0 16px rgba(255,255,255,0.5);
+  letter-spacing: 0.03em;
 }
 .sub{
   text-align:center;
   color:#ffffff;
   font-size: 15px;
-  margin: 8px 0 14px;
+  margin: 8px 0 18px;
   font-weight: 500;
   text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
@@ -197,9 +200,10 @@ h2{
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 2px solid var(--card-border);
-  border-radius: 22px;
-  padding: 12px; /* Reducido para que se vea más compacto */
+  border-radius: 10px;
+  padding: 8px;
   box-shadow:0 12px 40px rgba(0, 0, 0, 0.35);
+  margin-bottom: 24px;
 }
 
 .well{
@@ -207,30 +211,31 @@ h2{
   flex-wrap:wrap;
   gap:4px;
   align-content:flex-start;
-  padding:14px;
+  padding: 8px 14px;
   background: rgba(255, 255, 255, 0.92);
-  border-radius:18px;
+  border-radius: 6px;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
 }
 #bracelet{
-  min-height: 95px; /* Ligeramente más delgado */
+  min-height: 75px;
   flex-wrap:nowrap;
   overflow-x:auto;
   scrollbar-color: var(--hot-pink) #ffe0ef;
 }
 .empty{margin:auto;color:#b04a85;font-size:14px;text-align:center;font-weight:700}
 
-.tools{display:none;gap:8px;justify-content:center;margin-top:12px}.tools button{padding:8px 16px}
+.tools{display:none;gap:8px;justify-content:center;margin-top:8px}.tools button{padding:6px 16px}
 
-.pf{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px;flex-wrap:wrap}
+.pf{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:12px;flex-wrap:wrap}
 .pf .l{display:flex;gap:10px}.pf .r{text-align:right;font-weight:800;line-height:1.4}
 
 .pill{
   background:#ffffff;
   color:#333;
   box-shadow:none;
-  padding: 8px 18px;
+  padding: 6px 18px;
   font-size: 11px;
+  border-radius: 6px;
 }
 .pill.on{
   background: var(--hot-pink-deep);
@@ -239,28 +244,52 @@ h2{
   box-shadow:0 0 16px rgba(255, 255, 255, 0.6);
 }
 
-.acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 10px;align-items:center}
+.acts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  margin: 24px 0 20px 0;
+  align-items:center;
+}
+
 select,#search,#code{
   font:14px Poppins,Helvetica,Arial,sans-serif;
   color:#ffffff;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius:14px;
-  padding:12px;
+  border-radius: 6px;
+  padding: 8px 12px;
 }
 #search::placeholder{color: var(--mut)}
-.codebar{display:flex;gap:8px;background:rgba(0, 0, 0, 0.2);border-radius:16px;padding:8px;border: 1px solid rgba(255, 255, 255, 0.2)}
+
+.codebar{
+  display:flex;
+  gap:8px;
+  background:rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 24px;
+}
 #code{flex:1;min-width:0;border:0;background:transparent;text-align:center;font:13px monospace;color:#fff}
-#search{width:100%;margin:16px 0 8px;padding:16px 20px;font-size:15px}
+
+#search{
+  width:100%;
+  margin: 0 0 28px 0;
+  padding: 10px 20px;
+  font-size:15px;
+}
 
 /* TARJETAS DEL CATÁLOGO */
 .cat h3{
-  font:italic 800 19px "Playfair Display",Georgia,serif;
+  font:700 18px "Cinzel Decorative", Georgia, serif;
   color:#ffffff;
   border-bottom:2px solid rgba(255,255,255,0.3);
   padding-bottom:6px;
-  margin:22px 0 12px;
+  margin:28px 0 14px;
   text-shadow:0 2px 6px rgba(0,0,0,0.2);
+  letter-spacing: 0.03em;
 }
 .grid{
   display: grid;
@@ -270,13 +299,15 @@ select,#search,#code{
 .tile{
   background: rgba(255, 255, 255, 0.92);
   border: 2px solid transparent;
-  border-radius: 14px;
-  padding: 6px 4px; /* Menos relleno para que el cuadro blanco sea más angosto/chiquito */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:2px;
-  cursor:pointer;
+  border-radius: 4px;
+  padding: 4px 6px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
+  cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   transition: all .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -295,7 +326,7 @@ select,#search,#code{
 .charm img{width:100%;height:100%;display:block;object-fit:contain}
 .cara{position:absolute;left:3%;top:22%;width:83.5%;height:56%;background:center/cover no-repeat;display:grid;place-items:center;overflow:hidden}
 .cara b{font:800 .9em/1 Poppins,Arial,sans-serif;color:#111;text-align:center}
-#bracelet .charm.sel{outline:3px solid var(--hot-pink-deep);outline-offset:2px;border-radius:6px}
+#bracelet .charm.sel{outline:3px solid var(--hot-pink-deep);outline-offset:2px;border-radius: 2px;}
 
 /* MODALES */
 dialog{
@@ -304,7 +335,7 @@ dialog{
   background: #ffffff;
   color: #333;
   border: none;
-  border-radius:24px;
+  border-radius: 10px;
   padding:24px;
   box-shadow:0 20px 50px rgba(0,0,0,0.5);
 }
@@ -315,17 +346,17 @@ dialog{
 .charm img{-webkit-user-drag:none;pointer-events:none}
 
 .ayuda{display:inline-grid;place-items:center;width:22px;height:22px;margin-left:10px;border-radius:50%;border:1.5px solid #fff;color:#fff;font:800 13px Poppins,Arial,sans-serif;cursor:help;vertical-align:middle;text-shadow:none;outline:none}
-.tip{display:none;position:absolute;left:0;top:100%;width:min(300px,86vw);background:#fff;color:#333;border-radius:14px;padding:14px;box-shadow:0 10px 25px rgba(0,0,0,0.3);font:500 12px/1.6 Poppins,Arial,sans-serif;text-align:left;z-index:20}
+.tip{display:none;position:absolute;left:0;top:100%;width:min(300px,86vw);background:#fff;color:#333;border-radius: 6px;padding:14px;box-shadow:0 10px 25px rgba(0,0,0,0.3);font:500 12px/1.6 Poppins,Arial,sans-serif;text-align:left;z-index:20}
 .ayuda:hover .tip,.ayuda:focus .tip{display:block}
 dialog::backdrop{background:rgba(0,0,0,0.75);backdrop-filter:blur(4px)}
 table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}th,td{padding:8px 6px;border-bottom:1px solid #eee;text-align:left}
 .small{color:#666;font-size:13px}
 
-details{background:var(--card-bg);backdrop-filter:blur(10px);border:1px solid var(--card-border);border-radius:16px;padding:14px 18px;margin:12px 0}
+details{background:var(--card-bg);backdrop-filter:blur(10px);border:1px solid var(--card-border);border-radius: 6px;padding: 10px 18px;margin:12px 0}
 summary{font-weight:700;cursor:pointer;color:#fff}details p{color:var(--mut);font-size:14px;line-height:1.5;margin:10px 0 0}
 
 footer{text-align:center;color:var(--mut);font-size:13px;margin-top:40px}footer a{color:#fff;margin:0 8px}
-#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#ffffff;color:var(--hot-pink-deep);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,0.4);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40;max-width:90%;text-align:center}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#ffffff;color:var(--hot-pink-deep);padding: 8px 24px;border-radius: 6px;font-size:14px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,0.4);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40;max-width:90%;text-align:center}
 #toast.on{opacity:1}
 </style>
 </head>
