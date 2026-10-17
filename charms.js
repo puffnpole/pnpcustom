@@ -27,10 +27,12 @@ const SIZES = [["Chica",16,"14.2 - 15.2","5.60 - 6.00"],["Mediana",17,"15.2 - 16
 const CHARMS = [
   {id:"liso", cat:"Lisos", name:"Liso (acero)", price:35},
   // ↓↓↓ PEGA AQUÍ TUS NUEVOS CHARMS ↓↓↓
-{id:"a-4", cat:"Artistas", name:"A-4", price:50, foto:"charms/a-4.png", fotoDorado:"charms/a-4D.png"},
+/ ↓↓↓ PEGA AQUÍ TUS NUEVOS CHARMS ↓↓↓
+  
+  {id:"a-4", cat:"Artistas", name:"A-4", price:50, foto:"charms/a-4.png", fotoDorado:"charms/a-4D.png"},
   {id:"a-5", cat:"Artistas", name:"A-5", price:50, foto:"charms/a-5.png", fotoDorado:"charms/a-5D.png"},
   {id:"ch-4", cat:"Logo", name:"Ch-4", price:50, foto:"charms/ch-4.png", fotoDorado:"charms/ch-4D.png"},
- {id:"ch-11", cat:"Palomero", name:"Ch-11", price:50, foto:"charms/ch-11.png", fotoDorado:"charms/ch-11D.png"},
+  {id:"ch-11", cat:"Palomero", name:"Ch-11", price:50, foto:"charms/ch-11.png", fotoDorado:"charms/ch-11D.png"},
   {id:"ch-10", cat:"Palomero", name:"Ch-10", price:50, foto:"charms/ch-10.png", fotoDorado:"charms/ch-10D.png"},
   {id:"ch-9", cat:"Palomero", name:"Ch-9", price:50, foto:"charms/ch-9.png", fotoDorado:"charms/ch-9D.png"},
   {id:"ch-8", cat:"Logo", name:"Ch-8", price:50, foto:"charms/ch-8.png", fotoDorado:"charms/ch-8D.png"},
