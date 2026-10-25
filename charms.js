@@ -45,7 +45,6 @@ const CHARMS = [
   {id:"a-7", cat:"Artistas", name:"A-7", price:70, foto:"charms/A-7.png", fotoDorado:"charms/A-7D.png"},
   {id:"a-3", cat:"Artistas", name:"A-3", price:70, foto:"charms/A-3.png", fotoDorado:"charms/A-3D.png"},
   {id:"a-2", cat:"Artistas", name:"A-2", price:70, foto:"charms/A-2.png", fotoDorado:"charms/A-2D.png"},
-  {id:"a-1d", cat:"Artistas", name:"A-1D", price:70, foto:"charms/A-1.png", fotoDorado:"charms/a-1D.png"},
   {id:"pinkiki", cat:"Texturas", name:"pinkiki", price:70, foto:"charms/pinkiki.png", fotoDorado:"charms/pinkikiD.png"},
   {id:"leopard", cat:"Texturas", name:"leopard", price:70, foto:"charms/leopard.png", fotoDorado:"charms/leopardD.png"},
   {id:"espi", cat:"Texturas", name:"espi", price:70, foto:"charms/espi.png", fotoDorado:"charms/espiD.png"},
