@@ -554,6 +554,9 @@ footer{text-align:center;color:#FFCAE4;font-size:13px;margin-top:40px}footer a{c
 
 <script src="charms.js"></script>
 <script>
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault(); // Evita que aparezca el menú contextual
+});
 const $=id=>document.getElementById(id);
 const fmt=n=>new Intl.NumberFormat("es-MX",{style:"currency",currency:MONEDA,maximumFractionDigits:0}).format(n);
 const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
