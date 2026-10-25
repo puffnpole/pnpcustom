@@ -25,12 +25,11 @@ const SIZES = [["Chica",16,"14.2 - 15.2","5.60 - 6.00"],["Mediana",17,"15.2 - 16
    Pégala aquí abajo, antes del último ];
    --------------------------------------------------------------------- */
 const CHARMS = [
-  {id:"liso", cat:"Lisos", name:"Liso (acero)", price:35},
+  {id:"liso", cat:"Lisos", name:"Liso (acero)", price:40},
   // ↓↓↓ PEGA AQUÍ TUS NUEVOS CHARMS ↓↓↓
 {id:"a-4", cat:"Artistas", name:"A-4", price:50, foto:"charms/A-4.png", fotoDorado:"charms/A-4D.png"},
   {id:"a-5", cat:"Artistas", name:"A-5", price:50, foto:"charms/A-5.png", fotoDorado:"charms/A-5D.png"},
   {id:"ch-4", cat:"Logo", name:"Ch-4", price:50, foto:"charms/ch-4.png", fotoDorado:"charms/ch-4D.png"},
-  {id:"ch-11", cat:"Palomero", name:"Ch-11", price:50, foto:"charms/ch-11.png", fotoDorado:"charms/ch-11D.png"},
   {id:"ch-10", cat:"Palomero", name:"Ch-10", price:50, foto:"charms/ch-10.png", fotoDorado:"charms/ch-10D.png"},
   {id:"ch-9", cat:"Palomero", name:"Ch-9", price:50, foto:"charms/ch-9.png", fotoDorado:"charms/ch-9D.png"},
   {id:"ch-8", cat:"Logo", name:"Ch-8", price:50, foto:"charms/ch-8.png", fotoDorado:"charms/ch-8D.png"},
@@ -46,12 +45,10 @@ const CHARMS = [
   {id:"a-7", cat:"Artistas", name:"A-7", price:50, foto:"charms/A-7.png", fotoDorado:"charms/A-7D.png"},
   {id:"a-3", cat:"Artistas", name:"A-3", price:50, foto:"charms/A-3.png", fotoDorado:"charms/A-3D.png"},
   {id:"a-2", cat:"Artistas", name:"A-2", price:50, foto:"charms/A-2.png", fotoDorado:"charms/A-2D.png"},
+  {id:"a-1d", cat:"Artistas", name:"A-1D", price:50, foto:"charms/A-1.png", fotoDorado:"charms/a-1D.png"},
   {id:"pinkiki", cat:"Texturas", name:"pinkiki", price:50, foto:"charms/pinkiki.png", fotoDorado:"charms/pinkikiD.png"},
   {id:"leopard", cat:"Texturas", name:"leopard", price:50, foto:"charms/leopard.png", fotoDorado:"charms/leopardD.png"},
-  {id:"lace", cat:"Texturas", name:"lace", price:50, foto:"charms/lace.png", fotoDorado:"charms/laceD.png"},
   {id:"espi", cat:"Texturas", name:"espi", price:50, foto:"charms/espi.png", fotoDorado:"charms/espiD.png"},
-  {id:"zebra", cat:"Texturas", name:"Zebra", price:50, foto:"charms/zebra.png", fotoDorado:"charms/zebraD.png"},
   {id:"swagmili", cat:"Texturas", name:"swagmili", price:50, foto:"charms/swagmili.png", fotoDorado:"charms/swagmiliD.png"},
   {id:"greenpink", cat:"Texturas", name:"greenpink", price:50, foto:"charms/greenpink.png", fotoDorado:"charms/greenpinkD.png"},
-  {id:"disco", cat:"Texturas", name:"Disco", price:50, foto:"charms/disco.png", fotoDorado:"charms/discoD.png"},
 ];
