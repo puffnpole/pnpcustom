@@ -17,7 +17,13 @@
   flex-direction: column;
   gap: 8px;
 }
-
+/* --- OCULTAR SOLO LA BARRA LATERAL GENERAL DE LA PÁGINA --- */
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+html {
+  scrollbar-width: none; /* Firefox */
+}
 /* RECUADRO INFORMATIVO DE TALLAS */
 .size-tip-box {
   background: #fdf2f7;
