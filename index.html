@@ -579,18 +579,51 @@ $("brand").textContent=BRAND;$("tagline").textContent=TAGLINE;document.title=BRA
 $("copyright").textContent="© "+BRAND+" "+new Date().getFullYear();
 
 /* CONSTRUCCIÓN DE LA ÓRBITA EN FORMA DE PULSERA REAL */
+/* CONSTRUCCIÓN DE LA ÓRBITA EN FORMA DE PULSERA REAL */
 function buildHeroOrbit(){
   const left=$("orbitLeft"), right=$("orbitRight");
   left.innerHTML=""; right.innerHTML="";
   
-  const defaultLisos = [
-    {id:"liso-p", cat:"Lisos", name:"Liso plateado", price:35, m:"plateado"},
-    {id:"liso-d", cat:"Lisos", name:"Liso dorado", price:35, m:"dorado"}
-  ];
-  const list = defaultLisos.concat(CHARMS);
+  // 1. Crear una lista combinada de todos los charms disponibles (tanto plateados como dorados)
+  let pool = [];
+  CHARMS.forEach(c => {
+    // Añadir versión plateada
+    pool.push({...c, m: "plateado"});
+    // Añadir versión dorada (si tiene fotoDorado o usa la base dorada)
+    pool.push({...c, m: "dorado"});
+  });
+
+  // Agregar los lisos en ambos acabados
+  pool.push({id:"liso-p", cat:"Lisos", name:"Liso plateado", price:35, m:"plateado"});
+  pool.push({id:"liso-d", cat:"Lisos", name:"Liso dorado", price:35, m:"dorado"});
+
+  // 2. Función para generar una lista aleatoria sin repetir el mismo elemento de forma consecutiva
+  function getRandomSequence(sourcePool, count) {
+    let result = [];
+    let available = [...sourcePool];
+    
+    for (let i = 0; i < count; i++) {
+      // Filtrar para no repetir el último charm agregado (basado en su id y acabado)
+      let candidates = available;
+      if (result.length > 0) {
+        const last = result[result.length - 1];
+        candidates = available.filter(c => !(c.id === last.id && c.m === last.m));
+        if (candidates.length === 0) candidates = available; // por seguridad si la lista fuera muy chica
+      }
+      
+      const randomIndex = Math.floor(Math.random() * candidates.length);
+      const chosen = candidates[randomIndex];
+      result.push(chosen);
+    }
+    return result;
+  }
 
   const count = 18; 
   const radius = 280;
+
+  // Generar secuencias aleatorias independientes para la izquierda y la derecha
+  const listLeft = getRandomSequence(pool, count);
+  const listRight = getRandomSequence(pool, count);
 
   for(let i = 0; i < count; i++){
     // --- PULSERA IZQUIERDA ---
@@ -607,7 +640,7 @@ function buildHeroOrbit(){
     itemLeft.style.top = (radius + yL) + "px";
     itemLeft.style.transform = `rotate(${angleDegLeft + 90}deg)`;
     
-    itemLeft.appendChild(charmEl(list[i % list.length]));
+    itemLeft.appendChild(charmEl(listLeft[i]));
     left.appendChild(itemLeft);
 
     // --- PULSERA DERECHA ---
@@ -624,7 +657,7 @@ function buildHeroOrbit(){
     itemRight.style.top = (radius + yR) + "px";
     itemRight.style.transform = `rotate(${angleDegRight + 90}deg)`;
     
-    itemRight.appendChild(charmEl(list[(i + 2) % list.length]));
+    itemRight.appendChild(charmEl(listRight[i]));
     right.appendChild(itemRight);
   }
 }
